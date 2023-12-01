@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Vibes Gallery</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: #f6f1e9; /* Light beige background */
+            color: #2d1b33; /* Dark purple text color */
+            font-family: 'Arial', sans-serif;
+            margin-bottom: 60px; /* Adjust margin for the fixed footer */
+        }
+
+        h1 {
+            color: #ff6f61; /* Coral heading color */
+            margin-bottom: 10px;
+        }
+
+        .content-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            max-width: 80%;
+            width: 100%;
+            margin: 20px;
+            background-color: #fff; /* White background for content */
+            padding: 20px; /* Add padding for better visual appeal */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle lift */
+            position: relative; /* Set position to relative for absolute positioning inside */
+            padding-bottom: 60px; /* Same as margin-bottom in body for fixed footer */
+        }
+
+        .image-container,
+        .form-container {
+            width: 50%;
+            padding: 10px; /* Add padding for better spacing */
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px; /* Rounded corners for images */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow for images */
+            margin-bottom: 10px; /* Space between images */
+        }
+
+        .form-container {
+            background-color: #f4f4f4; /* Light gray background for the form container */
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .slideshow-buttons {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 20px;
+        }
+
+        /* New style for the fixed footer */
+        .fixed-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #2d1b33; /* Dark purple background for the footer */
+            padding: 10px; /* Adjust padding for better visual appeal */
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle lift */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slideshow-buttons button {
+            margin: 0 10px; /* Increased margin for better spacing */
+            padding: 15px; /* Increased padding for larger buttons */
+            cursor: pointer;
+            background-color: #ff6f61; /* Coral button color */
+            color: #fff;
+            border: none;
+            border-radius: 8px; /* Rounded corners for buttons */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to Your Exam!</h1>
+    <h3>Full Marks- 120   |   Full Time- 50min</h3>
+
+    <!-- Image and Google Form side by side -->
+    <div class="content-container">
+
+        <!-- Image container -->
+        <div class="image-container" id="slideshow">
+            <p style="color: #e74c3c;">Question: Click next to see the next question paper?</p>
+            <img src="image1.jpg" alt="Nature Scene 1">
+            <img src="image2.jpg" alt="Nature Scene 2">
+            <img src="image3.jpg" alt="Nature Scene 3">
+            <img src="image4.jpg" alt="Nature Scene 4">
+            <img src="image5.jpg" alt="Nature Scene 5">
+            <img src="image6.jpg" alt="Nature Scene 6">
+            <!-- Add more images as needed -->
+            <!-- You can dynamically load more images using JavaScript if there are a large number of images -->
+        </div>
+
+        <!-- Google Form container -->
+        <div class="form-container">
+            <p style="color: #27ae60;">Answer Sheet: Submit your answers in the form below.</p>
+            <iframe src="https://forms.gle/aVgY2BFni1JzNux58" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+        </div>
+
+    </div>
+
+    <!-- Fixed footer for slideshow buttons -->
+    <div class="fixed-footer">
+        <button onclick="previousImage()">Previous</button>
+        <button onclick="nextImage()">Next</button>
+    </div>
+
+    <script>
+        var currentImageIndex = 0;
+        var images = document.getElementById('slideshow').getElementsByTagName('img');
+
+        function showImage(index) {
+            for (var i = 0; i < images.length; i++) {
+                images[i].style.display = 'none';
+            }
+            images[index].style.display = 'block';
+            currentImageIndex = index;
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            showImage(currentImageIndex);
+        }
+
+        function previousImage() {
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            showImage(currentImageIndex);
+        }
+
+        showImage(currentImageIndex);
+    </script>
+
+</body>
+</html>
